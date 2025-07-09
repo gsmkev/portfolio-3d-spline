@@ -2,7 +2,8 @@
 export const INTERACTIVE_OBJECTS = {
   EDUCATION: 'education',
   CERTIFICATIONS: 'certifications',
-  BLOG: 'blog',
+  CONTACT: 'contact',
+  ABOUT: 'about',
   DEVELOPMENT: 'development',
   RESEARCH: 'research',
   GUITAR: 'guitar',
@@ -32,9 +33,13 @@ export const DIALOG_CONTENT = {
     title: 'Certificaciones',
     content: 'Aquí irán tus certificaciones...'
   },
-  [INTERACTIVE_OBJECTS.BLOG]: {
-    title: 'Blog',
-    content: 'Aquí irán tus artículos de blog...'
+  [INTERACTIVE_OBJECTS.CONTACT]: {
+    title: 'Contacto',
+    content: 'Aquí irá tu información de contacto...'
+  },
+  [INTERACTIVE_OBJECTS.ABOUT]: {
+    title: 'Acerca de mí',
+    content: 'Aquí irá información sobre ti...'
   },
   [INTERACTIVE_OBJECTS.DEVELOPMENT]: {
     title: 'Desarrollo',
