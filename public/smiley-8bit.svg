@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <!-- Definiciones para el estilo 8-bit -->
+  <defs>
+    <filter id="pixelate" x="-50%" y="-50%" width="200%" height="200%">
+      <feFlood flood-color="#000000" flood-opacity="0.1"/>
+      <feMorphology operator="dilate" radius="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Fondo 8-bit con píxeles visibles -->
+  <rect x="5" y="5" width="90" height="90" fill="#FFD700" stroke="#000" stroke-width="2"/>
+  
+  <!-- Píxeles del fondo para efecto 8-bit -->
+  <rect x="10" y="10" width="80" height="80" fill="#FFD700"/>
+  
+  <!-- Ojos 8-bit - píxeles individuales -->
+  <!-- Ojo izquierdo -->
+  <rect x="25" y="30" width="8" height="8" fill="#000"/>
+  <rect x="33" y="30" width="8" height="8" fill="#000"/>
+  <rect x="25" y="38" width="8" height="8" fill="#000"/>
+  <rect x="33" y="38" width="8" height="8" fill="#000"/>
+  
+  <!-- Ojo derecho -->
+  <rect x="67" y="30" width="8" height="8" fill="#000"/>
+  <rect x="75" y="30" width="8" height="8" fill="#000"/>
+  <rect x="67" y="38" width="8" height="8" fill="#000"/>
+  <rect x="75" y="38" width="8" height="8" fill="#000"/>
+  
+  <!-- Pupilas 8-bit -->
+  <rect x="29" y="34" width="4" height="4" fill="#FFF"/>
+  <rect x="71" y="34" width="4" height="4" fill="#FFF"/>
+  
+  <!-- Boca :p - construida con píxeles individuales -->
+  <!-- Fila 1 de la boca -->
+  <rect x="20" y="55" width="8" height="8" fill="#000"/>
+  <rect x="28" y="55" width="8" height="8" fill="#000"/>
+  <rect x="36" y="55" width="8" height="8" fill="#000"/>
+  <rect x="44" y="55" width="8" height="8" fill="#000"/>
+  <rect x="52" y="55" width="8" height="8" fill="#000"/>
+  <rect x="60" y="55" width="8" height="8" fill="#000"/>
+  <rect x="68" y="55" width="8" height="8" fill="#000"/>
+  <rect x="76" y="55" width="8" height="8" fill="#000"/>
+  
+  <!-- Fila 2 de la boca -->
+  <rect x="24" y="63" width="8" height="8" fill="#000"/>
+  <rect x="32" y="63" width="8" height="8" fill="#000"/>
+  <rect x="40" y="63" width="8" height="8" fill="#000"/>
+  <rect x="48" y="63" width="8" height="8" fill="#000"/>
+  <rect x="56" y="63" width="8" height="8" fill="#000"/>
+  <rect x="64" y="63" width="8" height="8" fill="#000"/>
+  <rect x="72" y="63" width="8" height="8" fill="#000"/>
+  
+  <!-- Fila 3 de la boca -->
+  <rect x="28" y="71" width="8" height="8" fill="#000"/>
+  <rect x="36" y="71" width="8" height="8" fill="#000"/>
+  <rect x="44" y="71" width="8" height="8" fill="#000"/>
+  <rect x="52" y="71" width="8" height="8" fill="#000"/>
+  <rect x="60" y="71" width="8" height="8" fill="#000"/>
+  <rect x="68" y="71" width="8" height="8" fill="#000"/>
+  
+  <!-- Fila 4 de la boca -->
+  <rect x="32" y="79" width="8" height="8" fill="#000"/>
+  <rect x="40" y="79" width="8" height="8" fill="#000"/>
+  <rect x="48" y="79" width="8" height="8" fill="#000"/>
+  <rect x="56" y="79" width="8" height="8" fill="#000"/>
+  <rect x="64" y="79" width="8" height="8" fill="#000"/>
+  
+  <!-- Fila 5 de la boca -->
+  <rect x="36" y="87" width="8" height="8" fill="#000"/>
+  <rect x="44" y="87" width="8" height="8" fill="#000"/>
+  <rect x="52" y="87" width="8" height="8" fill="#000"/>
+  <rect x="60" y="87" width="8" height="8" fill="#000"/>
+  
+  <!-- Lengua :p - píxeles rosados -->
+  <!-- Fila 1 de la lengua -->
+  <rect x="32" y="95" width="8" height="8" fill="#FF69B4"/>
+  <rect x="40" y="95" width="8" height="8" fill="#FF69B4"/>
+  <rect x="48" y="95" width="8" height="8" fill="#FF69B4"/>
+  <rect x="56" y="95" width="8" height="8" fill="#FF69B4"/>
+  
+  <!-- Fila 2 de la lengua -->
+  <rect x="36" y="103" width="8" height="8" fill="#FF69B4"/>
+  <rect x="44" y="103" width="8" height="8" fill="#FF69B4"/>
+  <rect x="52" y="103" width="8" height="8" fill="#FF69B4"/>
+  
+  <!-- Fila 3 de la lengua -->
+  <rect x="40" y="111" width="8" height="8" fill="#FF69B4"/>
+  <rect x="48" y="111" width="8" height="8" fill="#FF69B4"/>
+  
+  <!-- Fila 4 de la lengua -->
+  <rect x="44" y="119" width="8" height="8" fill="#FF69B4"/>
+  
+  <!-- Detalles 8-bit adicionales -->
+  <!-- Píxeles decorativos en las esquinas -->
+  <rect x="8" y="8" width="4" height="4" fill="#FF6B35"/>
+  <rect x="88" y="8" width="4" height="4" fill="#FF6B35"/>
+  <rect x="8" y="88" width="4" height="4" fill="#FF6B35"/>
+  <rect x="88" y="88" width="4" height="4" fill="#FF6B35"/>
+</svg> 
