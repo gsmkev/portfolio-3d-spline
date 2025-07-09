@@ -39,28 +39,6 @@ const SplineScene = ({ onLoad, onMouseDown, onMouseHover }) => {
         }
     };
 
-    const splineConfig = {
-        // Configuración específica para mobile según Spline 3D
-        mobile: isMobile,
-        // Deshabilitar zoom en mobile para mejor experiencia
-        disableZoom: isMobile,
-        // Configurar sensibilidad de pan para mobile
-        panSensitivity: isMobile ? 0.5 : 1,
-        // Configurar sensibilidad de rotación para mobile
-        rotationSensitivity: isMobile ? 0.3 : 1,
-        // Habilitar gestos táctiles
-        enableTouch: true,
-        // Configurar límites de zoom
-        minZoom: isMobile ? 0.5 : 0.1,
-        maxZoom: isMobile ? 2 : 5,
-        // Configurar límites de pan
-        panLimits: isMobile ? {
-            x: [-50, 50],
-            y: [-30, 30],
-            z: [-20, 20]
-        } : undefined
-    };
-
     return (
         <div
             style={{
@@ -80,7 +58,6 @@ const SplineScene = ({ onLoad, onMouseDown, onMouseHover }) => {
                     ...commonStyles.splineContainer,
                     touchAction: isMobile ? 'none' : 'auto'
                 }}
-                {...splineConfig}
             />
         </div>
     );
