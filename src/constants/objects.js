@@ -9,15 +9,15 @@ export const INTERACTIVE_OBJECTS = {
 
 // Configuración de animaciones
 export const ANIMATION_CONFIG = {
-  LEVITATION_HEIGHT: 50,
-  ANIMATION_DURATION: 400, // ms para el salto completo (más rápido)
+  LEVITATION_HEIGHT: 20,
+  ANIMATION_DURATION: 400
 };
 
 // Configuración del modal
 export const MODAL_CONFIG = {
   MAX_WIDTH: '500px',
   MAX_HEIGHT: '400px',
-  OVERLAY_OPACITY: 0.7,
+  OVERLAY_OPACITY: 0.7
 };
 
 // Contenido de los diálogos

@@ -14,7 +14,6 @@ class AudioService {
 
   // Reproducir música (simulada)
   playMusic() {
-    console.log('🎵 Reproduciendo música...');
     // Aquí puedes agregar lógica real de reproducción de música
     // Por ejemplo, cargar y reproducir un archivo de audio
   }
@@ -22,7 +21,6 @@ class AudioService {
   // Tocar notas de guitarra
   playGuitarNotes() {
     const randomNote = this.notes[Math.floor(Math.random() * this.notes.length)];
-    console.log(`🎸 Tocando nota: ${randomNote}`);
     
     // Aquí puedes agregar lógica real para generar tonos de guitarra
     // usando Web Audio API

@@ -1,6 +1,5 @@
 // Estilos comunes para la aplicación
 export const commonStyles = {
-  // Contenedor principal
   mainContainer: {
     width: '100vw',
     height: '100vh',
@@ -10,7 +9,6 @@ export const commonStyles = {
     position: 'relative'
   },
 
-  // Estilos para el contenedor de Spline
   splineContainer: {
     width: '100vw',
     height: '100vh',
@@ -19,7 +17,6 @@ export const commonStyles = {
     display: 'block'
   },
 
-  // Estilos para botones
   button: {
     background: 'none',
     border: 'none',
@@ -27,7 +24,6 @@ export const commonStyles = {
     transition: 'all 0.2s ease'
   },
 
-  // Estilos para el botón de cerrar modal
   closeButton: {
     position: 'absolute',
     top: '10px',

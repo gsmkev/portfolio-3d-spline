@@ -5,17 +5,13 @@ export const useModal = () => {
   const [dialogContent, setDialogContent] = useState('');
   const [dialogTitle, setDialogTitle] = useState('');
 
-  // Función para mostrar diálogo
   const showContentDialog = useCallback((title, content) => {
     setDialogTitle(title);
     setDialogContent(content);
     setShowDialog(true);
   }, []);
 
-  // Función para cerrar diálogo
-  const closeDialog = useCallback(() => {
-    setShowDialog(false);
-  }, []);
+  const closeDialog = useCallback(() => setShowDialog(false), []);
 
   return {
     showDialog,

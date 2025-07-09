@@ -5,11 +5,7 @@ export const useSplineRef = () => {
 
   const onLoad = useCallback((spline) => {
     splineRef.current = spline;
-    console.log('Spline cargado:', spline);
   }, []);
 
-  return {
-    splineRef,
-    onLoad
-  };
+  return { splineRef, onLoad };
 }; 
