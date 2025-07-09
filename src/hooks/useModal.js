@@ -5,6 +5,7 @@ export const useModal = () => {
   const [dialogContent, setDialogContent] = useState('');
   const [dialogTitle, setDialogTitle] = useState('');
 
+  // Ahora acepta string o array de cards
   const showContentDialog = useCallback((title, content) => {
     setDialogTitle(title);
     setDialogContent(content);

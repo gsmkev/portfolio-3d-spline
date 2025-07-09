@@ -18,6 +18,7 @@ const Modal = ({ isOpen, onClose, title, content }) => {
 
     if (!isOpen) return null;
 
+    // Sidebar overlay y modal lateral
     const overlayStyle = {
         position: 'fixed',
         top: 0,
@@ -26,82 +27,105 @@ const Modal = ({ isOpen, onClose, title, content }) => {
         height: '100vh',
         backgroundColor: `rgba(0, 0, 0, ${MODAL_CONFIG.OVERLAY_OPACITY})`,
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: isMobile ? 'center' : 'flex-end',
+        alignItems: isMobile ? 'center' : 'stretch',
         zIndex: 1000,
-        // Mejoras para mobile
-        padding: isMobile ? '1rem' : '0',
-        touchAction: 'manipulation'
-    };
-
-    const modalStyle = {
-        backgroundColor: 'white',
-        padding: isMobile ? '1.5rem' : '2rem',
-        borderRadius: isMobile ? '8px' : '10px',
-        maxWidth: isMobile ? 'calc(100vw - 2rem)' : MODAL_CONFIG.MAX_WIDTH,
-        maxHeight: isMobile ? 'calc(100vh - 2rem)' : MODAL_CONFIG.MAX_HEIGHT,
-        width: isMobile ? '100%' : 'auto',
-        overflow: 'auto',
-        position: 'relative',
-        // Mejoras para mobile
+        padding: 0,
         touchAction: 'manipulation',
-        WebkitOverflowScrolling: 'touch',
-        // Prevenir scroll horizontal
-        overflowX: 'hidden',
-        // Mejorar legibilidad en mobile
-        fontSize: isMobile ? '16px' : 'inherit'
     };
 
-    const titleStyle = {
-        marginTop: 0,
-        color: '#333',
-        fontSize: isMobile ? '1.25rem' : '1.5rem',
-        marginBottom: '1rem',
-        lineHeight: '1.3',
-        // Prevenir wrap de palabras largas
-        wordBreak: 'break-word'
+    const sidebarStyle = {
+        backgroundColor: 'white',
+        width: isMobile ? '100vw' : '400px',
+        height: isMobile ? '100vh' : '100vh',
+        maxWidth: isMobile ? '100vw' : '400px',
+        maxHeight: '100vh',
+        boxShadow: isMobile ? 'none' : '-2px 0 16px rgba(0,0,0,0.12)',
+        borderRadius: isMobile ? 0 : '16px 0 0 16px',
+        padding: isMobile ? '1.5rem 1rem' : '2rem 1.5rem',
+        position: 'relative',
+        overflowY: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1.5rem',
+        animation: 'slideInSidebar 0.3s cubic-bezier(.4,1.3,.6,1)'
     };
 
-    const contentStyle = {
-        color: '#666',
-        lineHeight: '1.6',
+    // Animación para el sidebar
+    const styleSheet = document.styleSheets[0];
+    if (styleSheet && !Array.from(styleSheet.cssRules).find(r => r.name === 'slideInSidebar')) {
+        styleSheet.insertRule(`@keyframes slideInSidebar { from { transform: translateX(100%); } to { transform: translateX(0); } }`, styleSheet.cssRules.length);
+    }
+
+    const closeBtnStyle = {
+        ...commonStyles.closeButton,
+        top: isMobile ? '8px' : '10px',
+        right: isMobile ? '8px' : '10px',
+        fontSize: isMobile ? '18px' : '20px',
+        background: '#f8f8f8',
+        border: '1px solid #eee',
+    };
+
+    // Card style
+    const cardStyle = {
+        background: '#f7f7fa',
+        borderRadius: '12px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+        padding: '1.2rem 1rem',
+        marginBottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+    };
+    const cardTitleStyle = {
+        fontWeight: 600,
+        fontSize: '1.1rem',
+        color: '#222',
         margin: 0,
-        fontSize: isMobile ? '0.95rem' : '1rem',
-        // Mejorar legibilidad en mobile
-        textAlign: 'left',
-        // Prevenir scroll horizontal
-        wordBreak: 'break-word',
-        overflowWrap: 'break-word'
+    };
+    const cardContentStyle = {
+        color: '#555',
+        fontSize: '1rem',
+        margin: 0,
+        lineHeight: 1.5,
     };
 
     const handleOverlayClick = (e) => {
-        // Solo cerrar si se hace clic en el overlay, no en el modal
         if (e.target === e.currentTarget) {
             onClose();
         }
     };
 
+    // Permitir que content sea string o array de cards
+    const renderCards = () => {
+        if (Array.isArray(content)) {
+            return content.map((card, idx) => (
+                <div key={idx} style={cardStyle}>
+                    {card.title && <h3 style={cardTitleStyle}>{card.title}</h3>}
+                    <div style={cardContentStyle}>{card.content}</div>
+                </div>
+            ));
+        }
+        // Si es string, mostrar una sola card
+        return (
+            <div style={cardStyle}>
+                {title && <h3 style={cardTitleStyle}>{title}</h3>}
+                <div style={cardContentStyle}>{content}</div>
+            </div>
+        );
+    };
+
     return (
         <div style={overlayStyle} onClick={handleOverlayClick}>
-            <div style={modalStyle} onClick={(e) => e.stopPropagation()}>
+            <div style={sidebarStyle}>
                 <button
                     onClick={onClose}
-                    style={{
-                        ...commonStyles.closeButton,
-                        // Ajustes específicos para mobile
-                        top: isMobile ? '8px' : '10px',
-                        right: isMobile ? '8px' : '10px',
-                        fontSize: isMobile ? '18px' : '20px'
-                    }}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = '#f0f0f0'}
-                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-                    onTouchStart={(e) => e.target.style.backgroundColor = '#f0f0f0'}
-                    onTouchEnd={(e) => e.target.style.backgroundColor = 'transparent'}
+                    style={closeBtnStyle}
+                    aria-label="Cerrar"
                 >
                     ✕
                 </button>
-                <h2 style={titleStyle}>{title}</h2>
-                <p style={contentStyle}>{content}</p>
+                {renderCards()}
             </div>
         </div>
     );
