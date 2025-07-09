@@ -18,7 +18,6 @@ const Modal = ({ isOpen, onClose, title, content }) => {
 
     if (!isOpen) return null;
 
-    // Sidebar overlay y modal lateral
     const overlayStyle = {
         position: 'fixed',
         top: 0,
@@ -36,9 +35,9 @@ const Modal = ({ isOpen, onClose, title, content }) => {
 
     const sidebarStyle = {
         backgroundColor: 'white',
-        width: isMobile ? '100vw' : '400px',
+        width: isMobile ? '100vw' : '600px',
         height: isMobile ? '100vh' : '100vh',
-        maxWidth: isMobile ? '100vw' : '400px',
+        maxWidth: isMobile ? '100vw' : '600px',
         maxHeight: '100vh',
         boxShadow: isMobile ? 'none' : '-2px 0 16px rgba(0,0,0,0.12)',
         borderRadius: isMobile ? 0 : '16px 0 0 16px',
@@ -66,28 +65,32 @@ const Modal = ({ isOpen, onClose, title, content }) => {
         border: '1px solid #eee',
     };
 
-    // Card style
     const cardStyle = {
         background: '#f7f7fa',
         borderRadius: '12px',
         boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
         padding: '1.2rem 1rem',
-        marginBottom: 0,
+        marginBottom: '1rem',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.5rem',
     };
+
     const cardTitleStyle = {
         fontWeight: 600,
         fontSize: '1.1rem',
         color: '#222',
         margin: 0,
+        marginBottom: '0.5rem',
     };
+
     const cardContentStyle = {
         color: '#555',
-        fontSize: '1rem',
+        fontSize: '0.95rem',
         margin: 0,
-        lineHeight: 1.5,
+        lineHeight: 1.6,
+        whiteSpace: 'pre-line',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     };
 
     const handleOverlayClick = (e) => {
@@ -96,23 +99,27 @@ const Modal = ({ isOpen, onClose, title, content }) => {
         }
     };
 
-    // Permitir que content sea string o array de cards
-    const renderCards = () => {
-        if (Array.isArray(content)) {
-            return content.map((card, idx) => (
-                <div key={idx} style={cardStyle}>
-                    {card.title && <h3 style={cardTitleStyle}>{card.title}</h3>}
-                    <div style={cardContentStyle}>{card.content}</div>
+    const formatContent = (text) => {
+        if (!text) return '';
+
+        const sections = text.split('\n\n');
+
+        return sections.map((section, index) => {
+            const lines = section.split('\n');
+            const firstLine = lines[0];
+            const remainingLines = lines.slice(1);
+
+            const isTitle = firstLine.match(/^[🎓🏆📞👨‍💻💻🔬🎓💼🚀🔧]/);
+
+            return (
+                <div key={index} style={cardStyle}>
+                    {isTitle && <h3 style={cardTitleStyle}>{firstLine}</h3>}
+                    <div style={cardContentStyle}>
+                        {isTitle ? remainingLines.join('\n') : section}
+                    </div>
                 </div>
-            ));
-        }
-        // Si es string, mostrar una sola card
-        return (
-            <div style={cardStyle}>
-                {title && <h3 style={cardTitleStyle}>{title}</h3>}
-                <div style={cardContentStyle}>{content}</div>
-            </div>
-        );
+            );
+        });
     };
 
     return (
@@ -125,7 +132,9 @@ const Modal = ({ isOpen, onClose, title, content }) => {
                 >
                     ✕
                 </button>
-                {renderCards()}
+                <div style={{ marginTop: '1rem' }}>
+                    {formatContent(content)}
+                </div>
             </div>
         </div>
     );
