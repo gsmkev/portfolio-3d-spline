@@ -9,8 +9,8 @@ export const INTERACTIVE_OBJECTS = {
 
 // Configuración de animaciones
 export const ANIMATION_CONFIG = {
-  LEVITATION_HEIGHT: 15,
-  ANIMATION_DURATION: 800, // ms por ciclo completo
+  LEVITATION_HEIGHT: 50,
+  ANIMATION_DURATION: 400, // ms para el salto completo (más rápido)
 };
 
 // Configuración del modal

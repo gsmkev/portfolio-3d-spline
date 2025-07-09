@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SplineScene from './components/SplineScene';
 import Modal from './components/Modal';
 import { useSplineRef } from './hooks/useSplineRef';
@@ -6,47 +6,34 @@ import { useModal } from './hooks/useModal';
 import { useSplineAnimations } from './hooks/useSplineAnimations';
 import { useSplineEvents } from './hooks/useSplineEvents';
 import { commonStyles } from './utils/styles';
-import { audioService } from './services/audioService';
 
 function App() {
     // Hooks personalizados
     const { splineRef, onLoad } = useSplineRef();
     const { showDialog, dialogTitle, dialogContent, showContentDialog, closeDialog } = useModal();
-    const { handleObjectHover, handleObjectOut, cleanupAnimations } = useSplineAnimations();
+    const { handleObjectClick } = useSplineAnimations();
 
     // Eventos de Spline
     const { handleSplineMouseDown } = useSplineEvents(splineRef, showContentDialog);
 
-    // Manejar hover y out de objetos
-    const handleSplineMouseHover = (e) => {
+    // Manejar click en objetos
+    const handleSplineMouseDownWithAnimation = (e) => {
         const objName = e.target.name;
-        if (objName) {
-            handleObjectHover(objName, splineRef);
-        }
-    };
 
-    const handleSplineMouseOut = (e) => {
-        const objName = e.target.name;
+        // Ejecutar animación de salto
         if (objName) {
-            handleObjectOut(objName, splineRef);
+            handleObjectClick(objName, splineRef);
         }
-    };
 
-    // Limpiar recursos al desmontar el componente
-    useEffect(() => {
-        return () => {
-            cleanupAnimations();
-            audioService.stopAllAudio();
-        };
-    }, [cleanupAnimations]);
+        // Ejecutar eventos originales (audio, modales, etc.)
+        handleSplineMouseDown(e);
+    };
 
     return (
         <main style={commonStyles.mainContainer}>
             <SplineScene
                 onLoad={onLoad}
-                onMouseDown={handleSplineMouseDown}
-                onMouseHover={handleSplineMouseHover}
-                onMouseOut={handleSplineMouseOut}
+                onMouseDown={handleSplineMouseDownWithAnimation}
             />
 
             <Modal
