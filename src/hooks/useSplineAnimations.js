@@ -6,8 +6,8 @@ export const useSplineAnimations = () => {
   const originalPositions = useRef(new Map());
   const animatingObjects = useRef(new Set());
 
-  // Función simple de salto
-  const handleObjectClick = useCallback((objName, splineRef) => {
+  // Función de salto (reutilizable para click y hover)
+  const performJump = useCallback((objName, splineRef) => {
     if (!objName || !splineRef.current) return;
     
     const obj = splineRef.current.findObjectByName(objName);
@@ -18,7 +18,7 @@ export const useSplineAnimations = () => {
       return;
     }
 
-    console.log('Salto simple para:', objName);
+    console.log('Salto para:', objName);
 
     // Guardar posición original si no existe
     if (!originalPositions.current.has(objName)) {
@@ -53,7 +53,18 @@ export const useSplineAnimations = () => {
     animate();
   }, []);
 
+  // Función para click
+  const handleObjectClick = useCallback((objName, splineRef) => {
+    performJump(objName, splineRef);
+  }, [performJump]);
+
+  // Función para hover
+  const handleObjectHover = useCallback((objName, splineRef) => {
+    performJump(objName, splineRef);
+  }, [performJump]);
+
   return {
-    handleObjectClick
+    handleObjectClick,
+    handleObjectHover
   };
 }; 

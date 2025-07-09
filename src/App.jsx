@@ -11,7 +11,7 @@ function App() {
     // Hooks personalizados
     const { splineRef, onLoad } = useSplineRef();
     const { showDialog, dialogTitle, dialogContent, showContentDialog, closeDialog } = useModal();
-    const { handleObjectClick } = useSplineAnimations();
+    const { handleObjectClick, handleObjectHover } = useSplineAnimations();
 
     // Eventos de Spline
     const { handleSplineMouseDown } = useSplineEvents(splineRef, showContentDialog);
@@ -29,11 +29,22 @@ function App() {
         handleSplineMouseDown(e);
     };
 
+    // Manejar hover en objetos
+    const handleSplineMouseHover = (e) => {
+        const objName = e.target.name;
+
+        // Ejecutar animación de salto
+        if (objName) {
+            handleObjectHover(objName, splineRef);
+        }
+    };
+
     return (
         <main style={commonStyles.mainContainer}>
             <SplineScene
                 onLoad={onLoad}
                 onMouseDown={handleSplineMouseDownWithAnimation}
+                onMouseHover={handleSplineMouseHover}
             />
 
             <Modal

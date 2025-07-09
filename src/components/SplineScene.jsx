@@ -4,13 +4,15 @@ import { commonStyles } from '../utils/styles';
 
 const SplineScene = ({
     onLoad,
-    onMouseDown
+    onMouseDown,
+    onMouseHover
 }) => {
     return (
         <Spline
             scene="/scene.splinecode"
             onLoad={onLoad}
             onSplineMouseDown={onMouseDown}
+            onSplineMouseHover={onMouseHover}
             style={commonStyles.splineContainer}
         />
     );
