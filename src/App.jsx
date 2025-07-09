@@ -10,15 +10,40 @@ import { useCV } from './hooks/useCV';
 import { commonStyles } from './utils/styles';
 import { CV_CONFIG, CV_SECTIONS } from './config/cv';
 
+const LanguageSelector = ({ language, onToggle }) => (
+    <div
+        style={{
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            zIndex: 1000,
+            background: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            fontFamily: 'Arial, sans-serif',
+            transition: 'background 0.3s ease'
+        }}
+        onMouseEnter={(e) => e.target.style.background = 'rgba(0, 0, 0, 0.9)'}
+        onMouseLeave={(e) => e.target.style.background = 'rgba(0, 0, 0, 0.7)'}
+        onClick={onToggle}
+    >
+        {language === CV_CONFIG.LANGUAGES.EN ? 'ES' : 'EN'}
+    </div>
+);
+
 function App() {
     const [isMobile, setIsMobile] = useState(false);
     const [language, setLanguage] = useState(CV_CONFIG.LANGUAGES.EN);
+
     const { cvData, loading, error, getContentForSection } = useCV(language);
     const { splineRef, onLoad } = useSplineRef();
     const { showDialog, dialogTitle, dialogContent, showContentDialog, closeDialog } = useModal();
     const { handleObjectClick, handleObjectHover } = useSplineAnimations();
 
-    // Refs para mantener estado siempre actualizado
+    // Refs para evitar stale closures
     const cvDataRef = useRef(cvData);
     const loadingRef = useRef(loading);
     const getContentForSectionRef = useRef(getContentForSection);
@@ -30,18 +55,15 @@ function App() {
         getContentForSectionRef.current = getContentForSection;
     }, [cvData, loading, getContentForSection]);
 
+    // Detectar dispositivo móvil
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
 
         checkMobile();
         window.addEventListener('resize', checkMobile);
 
         const preventScroll = (e) => {
-            if (isMobile) {
-                e.preventDefault();
-            }
+            if (isMobile) e.preventDefault();
         };
 
         if (isMobile) {
@@ -54,6 +76,7 @@ function App() {
         };
     }, [isMobile]);
 
+    // Event handlers
     const handleMouseDown = useCallback((e) => {
         const objName = e.target.name;
         if (objName) {
@@ -74,41 +97,39 @@ function App() {
         const eventHandlers = {
             [INTERACTIVE_OBJECTS.EDUCATION]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.EDUCATION);
-                showContentDialog('📚 Educación', content);
+                showContentDialog('Education', content);
             },
             [INTERACTIVE_OBJECTS.CERTIFICATIONS]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.CERTIFICATIONS);
-                showContentDialog('🏆 Certificaciones', content);
+                showContentDialog('Certifications', content);
             },
             [INTERACTIVE_OBJECTS.CONTACT]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.CONTACT);
-                showContentDialog('📞 Contacto', content);
+                showContentDialog('Contact', content);
             },
             [INTERACTIVE_OBJECTS.ABOUT]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.ABOUT);
-                showContentDialog('👨‍💻 Acerca de mí', content);
+                showContentDialog('About Me', content);
             },
             [INTERACTIVE_OBJECTS.DEVELOPMENT]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.DEVELOPMENT);
-                showContentDialog('💻 Proyectos', content);
+                showContentDialog('Projects', content);
             },
             [INTERACTIVE_OBJECTS.RESEARCH]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.RESEARCH);
-                showContentDialog('🔬 Investigación', content);
+                showContentDialog('Research', content);
             },
             [INTERACTIVE_OBJECTS.GUITAR]: () => {
                 audioService.playGuitarNotes();
             },
             [INTERACTIVE_OBJECTS.COURSES]: () => {
                 const content = getContentForSectionRef.current(CV_SECTIONS.COURSES);
-                showContentDialog('🎓 Cursos y Certificaciones', content);
+                showContentDialog('Courses & Certifications', content);
             }
         };
 
         const handler = eventHandlers[objName];
-        if (handler) {
-            handler();
-        }
+        if (handler) handler();
     }, [showContentDialog]);
 
     const toggleLanguage = useCallback(() => {
@@ -121,33 +142,14 @@ function App() {
 
     return (
         <main style={containerStyle}>
-            {/* Selector de idioma */}
-            <div style={{
-                position: 'fixed',
-                top: '20px',
-                right: '20px',
-                zIndex: 1000,
-                background: 'rgba(0, 0, 0, 0.7)',
-                color: 'white',
-                padding: '8px 16px',
-                borderRadius: '20px',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontFamily: 'Arial, sans-serif',
-                transition: 'background 0.3s ease'
-            }}
-                onMouseEnter={(e) => e.target.style.background = 'rgba(0, 0, 0, 0.9)'}
-                onMouseLeave={(e) => e.target.style.background = 'rgba(0, 0, 0, 0.7)'}
-                onClick={toggleLanguage}
-            >
-                {language === CV_CONFIG.LANGUAGES.EN ? '🇪🇸 ES' : '🇺🇸 EN'}
-            </div>
+            <LanguageSelector language={language} onToggle={toggleLanguage} />
 
             <SplineScene
                 onLoad={onLoad}
                 onMouseDown={handleMouseDown}
                 onMouseHover={handleMouseHover}
             />
+
             <Modal
                 isOpen={showDialog}
                 onClose={closeDialog}

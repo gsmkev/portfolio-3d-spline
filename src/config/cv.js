@@ -24,11 +24,11 @@ export const CV_SECTIONS = {
 
 // Títulos de los modales
 export const MODAL_TITLES = {
-  [CV_SECTIONS.EDUCATION]: '📚 Educación',
-  [CV_SECTIONS.CERTIFICATIONS]: '🏆 Certificaciones',
-  [CV_SECTIONS.CONTACT]: '📞 Contacto',
-  [CV_SECTIONS.ABOUT]: '👨‍💻 Acerca de mí',
-  [CV_SECTIONS.DEVELOPMENT]: '💻 Proyectos',
-  [CV_SECTIONS.RESEARCH]: '🔬 Investigación',
-  [CV_SECTIONS.COURSES]: '🎓 Cursos y Certificaciones'
+  [CV_SECTIONS.EDUCATION]: 'Education',
+  [CV_SECTIONS.CERTIFICATIONS]: 'Certifications',
+  [CV_SECTIONS.CONTACT]: 'Contact',
+  [CV_SECTIONS.ABOUT]: 'About Me',
+  [CV_SECTIONS.DEVELOPMENT]: 'Projects',
+  [CV_SECTIONS.RESEARCH]: 'Research',
+  [CV_SECTIONS.COURSES]: 'Courses & Certifications'
 }; 

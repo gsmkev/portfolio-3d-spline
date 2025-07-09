@@ -1,4 +1,4 @@
-// Nombres de objetos interactivos en la escena Spline
+// Interactive objects in Spline scene
 export const INTERACTIVE_OBJECTS = {
   EDUCATION: 'education',
   CERTIFICATIONS: 'certifications',
@@ -10,13 +10,13 @@ export const INTERACTIVE_OBJECTS = {
   COURSES: 'courses'
 };
 
-// Configuración de animaciones
+// Animation configuration
 export const ANIMATION_CONFIG = {
   LEVITATION_HEIGHT: 20,
   ANIMATION_DURATION: 400
 };
 
-// Configuración del modal
+// Modal configuration
 export const MODAL_CONFIG = {
   MAX_WIDTH: '600px',
   MAX_HEIGHT: '400px',

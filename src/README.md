@@ -1,136 +1,145 @@
 # Portfolio 3D - React App
 
-Una aplicación de portfolio interactivo en 3D construida con React y Spline.
+A modern 3D interactive portfolio built with React and Spline.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Escena 3D Interactiva**: Renderizada con Spline
-- **CV Dinámico**: Carga datos desde GitHub Gist en formato YAML
-- **Multiidioma**: Soporte para inglés y español
-- **Responsive**: Optimizado para móviles y desktop
-- **Animaciones**: Efectos de hover y click en objetos 3D
-- **Audio**: Efectos de sonido para la guitarra
-- **Modales**: Información detallada en paneles laterales
+- **3D Interactive Scene**: Rendered with Spline
+- **Dynamic CV**: Loads data from GitHub Gist in YAML format
+- **Multi-language**: Support for English and Spanish
+- **Responsive**: Optimized for mobile and desktop
+- **Animations**: Smooth hover and click effects on 3D objects
+- **Audio**: Sound effects for interactive elements
+- **Modals**: Detailed information in side panels
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 src/
-├── components/          # Componentes React
-│   ├── Modal.jsx       # Modal lateral para información
-│   └── SplineScene.jsx # Escena 3D de Spline
-├── config/             # Configuraciones centralizadas
-│   └── cv.js          # Configuración del CV y URLs
-├── constants/          # Constantes de la aplicación
-│   └── objects.js     # Nombres de objetos interactivos
+├── components/          # React components
+│   ├── Modal.jsx       # Side modal for information
+│   └── SplineScene.jsx # 3D Spline scene
+├── config/             # Centralized configurations
+│   ├── app.js         # App configuration and constants
+│   └── cv.js          # CV configuration and URLs
+├── constants/          # Application constants
+│   └── objects.js     # Interactive object names
 ├── hooks/              # Custom hooks
-│   ├── useCV.js       # Gestión del CV dinámico
-│   ├── useModal.js    # Gestión de modales
-│   ├── useSplineAnimations.js # Animaciones de objetos
-│   └── useSplineRef.js # Referencias de Spline
-├── services/           # Servicios externos
-│   ├── audioService.js # Gestión de audio
-│   └── cvService.js   # Fetch y formateo del CV
-├── utils/              # Utilidades
-│   └── styles.js      # Estilos comunes
-└── App.jsx            # Componente principal
+│   ├── useCV.js       # Dynamic CV management
+│   ├── useModal.js    # Modal management
+│   ├── useSplineAnimations.js # Object animations
+│   └── useSplineRef.js # Spline references
+├── services/           # External services
+│   ├── audioService.js # Audio management
+│   └── cvService.js   # CV fetch and formatting
+├── utils/              # Utilities
+│   └── styles.js      # Common styles
+└── App.jsx            # Main component
 ```
 
-## 🔧 Optimizaciones Implementadas
+## 🔧 Optimizations Implemented
 
-### 1. **Gestión de Estado Optimizada**
-- Uso de `useRef` para evitar stale closures en event handlers
-- Refs actualizados automáticamente cuando cambia el estado
-- Eliminación de re-renders innecesarios
+### 1. **State Management Optimization**
+- Use of `useRef` to avoid stale closures in event handlers
+- Refs automatically updated when state changes
+- Elimination of unnecessary re-renders
 
-### 2. **Configuración Centralizada**
-- URLs y configuraciones en `src/config/cv.js`
-- Constantes reutilizables para secciones del CV
-- Títulos de modales centralizados
+### 2. **Centralized Configuration**
+- URLs and configurations in `src/config/`
+- Reusable constants for CV sections
+- Centralized modal titles
 
-### 3. **Rendimiento Mejorado**
-- Eliminación de logs de debug innecesarios
-- Optimización de funciones con `useCallback`
-- Memoización de funciones costosas
-- Evita fetches innecesarios con dependencias correctas
+### 3. **Performance Improvements**
+- Removal of unnecessary debug logs
+- Function optimization with `useCallback`
+- Memoization of expensive functions
+- Avoids unnecessary fetches with correct dependencies
 
-### 4. **Código Limpio**
-- Eliminación de código comentado y logs
-- Formateo consistente
-- Separación clara de responsabilidades
-- Nombres de variables y funciones descriptivos
+### 4. **Clean Code**
+- Removal of commented code and logs
+- Consistent formatting
+- Clear separation of responsibilities
+- Descriptive variable and function names
 
-## 🎯 Funcionalidades Principales
+## 🎯 Main Functionalities
 
-### CV Dinámico
-- Carga desde GitHub Gist en formato YAML
-- Soporte para múltiples idiomas
-- Formateo automático con emojis y estructura
-- Secciones: Educación, Certificaciones, Proyectos, Contacto, etc.
+### Dynamic CV
+- Loads from GitHub Gist in YAML format
+- Support for multiple languages
+- Automatic formatting with clean structure
+- Sections: Education, Certifications, Projects, Contact, etc.
 
-### Interactividad 3D
-- Objetos clickeables en la escena
-- Animaciones de hover y click
-- Efectos de sonido para elementos específicos
-- Modales informativos para cada sección
+### 3D Interactivity
+- Clickable objects in the scene
+- Hover and click animations
+- Sound effects for specific elements
+- Informative modals for each section
 
 ### Responsive Design
-- Adaptación automática para móviles
-- Prevención de scroll en dispositivos táctiles
-- Modales optimizados para diferentes tamaños
+- Automatic adaptation for mobile devices
+- Touch scroll prevention on mobile
+- Modals optimized for different sizes
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies Used
 
-- **React 18**: Framework principal
-- **Spline**: Renderizado 3D
-- **js-yaml**: Parsing de YAML
+- **React 18**: Main framework
+- **Spline**: 3D rendering
+- **js-yaml**: YAML parsing
 - **Vite**: Build tool
-- **CSS-in-JS**: Estilos dinámicos
+- **CSS-in-JS**: Dynamic styles
 
-## 📦 Instalación y Uso
+## 📦 Installation and Usage
 
-1. Clonar el repositorio
-2. Instalar dependencias: `npm install`
-3. Ejecutar en desarrollo: `npm run dev`
-4. Construir para producción: `npm run build`
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run in development: `npm run dev`
+4. Build for production: `npm run build`
 
-## 🔄 Flujo de Datos
+## 🔄 Data Flow
 
-1. **Inicialización**: App carga con idioma por defecto
-2. **Fetch CV**: `useCV` hook carga datos desde GitHub Gist
-3. **Event Handling**: Click en objetos 3D activa modales
-4. **Content Display**: Datos formateados se muestran en modales
-5. **Language Switch**: Cambio de idioma recarga datos automáticamente
+1. **Initialization**: App loads with default language
+2. **CV Fetch**: `useCV` hook loads data from GitHub Gist
+3. **Event Handling**: Click on 3D objects activates modals
+4. **Content Display**: Formatted data displayed in modals
+5. **Language Switch**: Language change automatically reloads data
 
-## 🎨 Personalización
+## 🎨 Customization
 
-### Cambiar URL del CV
-Editar `src/config/cv.js`:
+### Change CV URL
+Edit `src/config/cv.js`:
 ```javascript
 export const CV_CONFIG = {
-  GIST_BASE_URL: 'tu-url-del-gist',
+  GIST_BASE_URL: 'your-gist-url',
   // ...
 };
 ```
 
-### Agregar Nuevas Secciones
-1. Actualizar `CV_SECTIONS` en `config/cv.js`
-2. Agregar handler en `App.jsx`
-3. Implementar formateo en `cvService.js`
+### Add New Sections
+1. Update `CV_SECTIONS` in `config/cv.js`
+2. Add handler in `App.jsx`
+3. Implement formatting in `cvService.js`
 
-### Modificar Estilos
-Los estilos están centralizados en `src/utils/styles.js` y `src/components/Modal.jsx`.
+### Modify Styles
+Styles are centralized in `src/utils/styles.js` and `src/components/Modal.jsx`.
 
-## 🚀 Rendimiento
+## 🚀 Performance
 
-- **Lazy Loading**: CV se carga solo cuando es necesario
-- **Memoización**: Funciones costosas memoizadas
-- **Refs**: Evita re-renders innecesarios
-- **Optimización de Event Handlers**: Uso eficiente de callbacks
+- **Lazy Loading**: CV loads only when needed
+- **Memoization**: Expensive functions memoized
+- **Refs**: Avoids unnecessary re-renders
+- **Event Handler Optimization**: Efficient callback usage
 
-## 📝 Notas de Desarrollo
+## 📝 Development Notes
 
-- El proyecto usa Vite para desarrollo rápido
-- Los datos del CV se almacenan en GitHub Gist para fácil actualización
-- La estructura modular facilita el mantenimiento y escalabilidad
-- El código está optimizado para evitar memory leaks y re-renders 
+- Project uses Vite for fast development
+- CV data stored in GitHub Gist for easy updates
+- Modular structure facilitates maintenance and scalability
+- Code optimized to prevent memory leaks and re-renders
+
+## 🎯 Code Quality
+
+- **Clean Architecture**: Separation of concerns
+- **Type Safety**: Consistent data structures
+- **Performance**: Optimized rendering and state management
+- **Maintainability**: Clear, documented code
+- **Scalability**: Modular design for easy expansion 

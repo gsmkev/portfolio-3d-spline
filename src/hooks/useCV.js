@@ -29,24 +29,26 @@ export const useCV = (language) => {
       return loading ? 'Loading...' : 'No data available';
     }
 
-    switch (section) {
-      case CV_SECTIONS.EDUCATION:
-        return cvService.formatEducation(cvData.education);
-      case CV_SECTIONS.CERTIFICATIONS:
-        return cvService.formatCertifications(cvData.certifications);
-      case CV_SECTIONS.DEVELOPMENT:
-        return cvService.formatProjects(cvData.projects);
-      case CV_SECTIONS.RESEARCH:
-        return cvService.formatProjects(cvData.projects, 'Research');
-      case CV_SECTIONS.COURSES:
-        return cvService.formatCertifications(cvData.certifications);
-      case CV_SECTIONS.CONTACT:
-        return cvService.formatContact(cvData.contact);
-      case CV_SECTIONS.ABOUT:
-        return `${cvService.formatContact(cvData.contact)}\n\n${cvService.formatSkills(cvData.skills)}\n\n${cvService.formatExperience(cvData.experience)}`;
-      default:
-        return 'Section not found';
-    }
+    const sectionHandlers = {
+      [CV_SECTIONS.EDUCATION]: () => cvService.formatEducation(cvData.education),
+      [CV_SECTIONS.CERTIFICATIONS]: () => cvService.formatCertifications(cvData.certifications),
+      [CV_SECTIONS.DEVELOPMENT]: () => cvService.formatProjects(cvData.projects),
+      [CV_SECTIONS.RESEARCH]: () => cvService.formatProjects(cvData.projects, 'Research'),
+      [CV_SECTIONS.COURSES]: () => cvService.formatCertifications(cvData.certifications),
+      [CV_SECTIONS.CONTACT]: () => cvService.formatContact(cvData.contact),
+      [CV_SECTIONS.ABOUT]: () => {
+        const contactContent = cvService.formatContact(cvData.contact);
+        const skillsContent = cvService.formatSkills(cvData.skills);
+        const experienceContent = cvService.formatExperience(cvData.experience);
+        return `${contactContent}\n\n${skillsContent}\n\n${experienceContent}`;
+      }
+    };
+
+    const handler = sectionHandlers[section];
+    if (!handler) return 'Section not found';
+
+    const rawContent = handler();
+    return cvService.formatContentForCards(rawContent, section);
   }, [cvData, loading]);
 
   return {

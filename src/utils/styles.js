@@ -1,4 +1,4 @@
-// Estilos comunes para la aplicación
+// Common styles for the application
 export const commonStyles = {
   mainContainer: {
     width: '100vw',
@@ -7,10 +7,9 @@ export const commonStyles = {
     padding: 0,
     overflow: 'hidden',
     position: 'relative',
-    // Mejoras para mobile
+    backgroundColor: '#000',
     WebkitOverflowScrolling: 'touch',
     touchAction: 'manipulation',
-    // Prevenir zoom en mobile
     maxWidth: '100vw',
     maxHeight: '100vh'
   },
@@ -21,18 +20,14 @@ export const commonStyles = {
     minWidth: '100vw',
     minHeight: '100vh',
     display: 'block',
-    // Mejoras específicas para mobile
     touchAction: 'none',
     WebkitOverflowScrolling: 'touch',
-    // Prevenir selección de texto
     WebkitUserSelect: 'none',
     MozUserSelect: 'none',
     msUserSelect: 'none',
     userSelect: 'none',
-    // Optimizar para mobile
     WebkitTransform: 'translateZ(0)',
     transform: 'translateZ(0)',
-    // Prevenir scroll horizontal
     overflow: 'hidden'
   },
 
@@ -41,8 +36,7 @@ export const commonStyles = {
     border: 'none',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
-    // Mejoras para mobile
-    minHeight: '44px', // Tamaño mínimo recomendado para touch
+    minHeight: '44px',
     minWidth: '44px',
     touchAction: 'manipulation'
   },
@@ -51,27 +45,21 @@ export const commonStyles = {
     position: 'absolute',
     top: '10px',
     right: '10px',
-    background: 'none',
-    border: 'none',
-    fontSize: '20px',
-    cursor: 'pointer',
-    color: '#666',
-    padding: '5px',
+    background: 'rgba(255, 255, 255, 0.9)',
+    border: '1px solid rgba(0, 0, 0, 0.1)',
     borderRadius: '50%',
-    width: '30px',
-    height: '30px',
+    width: '40px',
+    height: '40px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'background-color 0.2s ease',
-    // Mejoras para mobile
-    minHeight: '44px',
-    minWidth: '44px',
-    touchAction: 'manipulation',
-    zIndex: 1001
+    cursor: 'pointer',
+    fontSize: '20px',
+    color: '#666',
+    transition: 'all 0.2s ease',
+    zIndex: 10,
   },
 
-  // Estilos específicos para mobile
   mobileStyles: {
     mainContainer: {
       width: '100vw',
