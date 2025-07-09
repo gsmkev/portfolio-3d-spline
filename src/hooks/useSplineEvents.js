@@ -8,7 +8,18 @@ export const useSplineEvents = (splineRef, showContentDialog) => {
     if (!objName) return;
 
     const eventHandlers = {
-      [INTERACTIVE_OBJECTS.SPEAKERS]: () => audioService.playMusic(),
+      [INTERACTIVE_OBJECTS.EDUCATION]: () => showContentDialog(
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.EDUCATION].title,
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.EDUCATION].content
+      ),
+      [INTERACTIVE_OBJECTS.CERTIFICATIONS]: () => showContentDialog(
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.CERTIFICATIONS].title,
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.CERTIFICATIONS].content
+      ),
+      [INTERACTIVE_OBJECTS.BLOG]: () => showContentDialog(
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.BLOG].title,
+        DIALOG_CONTENT[INTERACTIVE_OBJECTS.BLOG].content
+      ),
       [INTERACTIVE_OBJECTS.DEVELOPMENT]: () => showContentDialog(
         DIALOG_CONTENT[INTERACTIVE_OBJECTS.DEVELOPMENT].title,
         DIALOG_CONTENT[INTERACTIVE_OBJECTS.DEVELOPMENT].content

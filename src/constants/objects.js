@@ -1,6 +1,8 @@
 // Nombres de objetos interactivos en la escena Spline
 export const INTERACTIVE_OBJECTS = {
-  SPEAKERS: 'speakers',
+  EDUCATION: 'education',
+  CERTIFICATIONS: 'certifications',
+  BLOG: 'blog',
   DEVELOPMENT: 'development',
   RESEARCH: 'research',
   GUITAR: 'guitar',
@@ -22,6 +24,18 @@ export const MODAL_CONFIG = {
 
 // Contenido de los diálogos
 export const DIALOG_CONTENT = {
+  [INTERACTIVE_OBJECTS.EDUCATION]: {
+    title: 'Educación',
+    content: 'Aquí irá tu información educativa...'
+  },
+  [INTERACTIVE_OBJECTS.CERTIFICATIONS]: {
+    title: 'Certificaciones',
+    content: 'Aquí irán tus certificaciones...'
+  },
+  [INTERACTIVE_OBJECTS.BLOG]: {
+    title: 'Blog',
+    content: 'Aquí irán tus artículos de blog...'
+  },
   [INTERACTIVE_OBJECTS.DEVELOPMENT]: {
     title: 'Desarrollo',
     content: 'Aquí irán tus proyectos de desarrollo...'
